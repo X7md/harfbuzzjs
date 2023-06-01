@@ -74,9 +74,9 @@ function updateResult() {
 
   
   
-  svgResult.innerHTML = `<svg width="100%" height="100%">
-        <rect width="100%" height="100%" style="fill: white;" />
-        ${'<svg xmlns="http://www.w3.org/2000/svg"  x="25%" y="35%" width="50%" height="50%"  viewBox="' + bbox + '">' +
+  svgResult.innerHTML = `<svg width="1280px" height="720px">
+        <rect width="100%" height="100%" style="fill: deeppink;" />
+        ${'<svg xmlns="http://www.w3.org/2000/svg" fill="white"  x="25%" y="35%" width="50%" height="50%"  viewBox="' + bbox + '">' +
     '<path d="' + path + '" /></svg>'}
 </body>`;
   svgResult.download = text.value + '.svg';
