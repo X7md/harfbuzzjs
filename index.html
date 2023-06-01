@@ -72,12 +72,17 @@ function updateResult() {
 
   var bbox = xmin + ' ' + ymin + ' ' + width + ' ' + height;
 
-  svgResult.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="128" viewBox="' + bbox + '">' +
-    '<path d="' + path + '" /></svg>';
+  
+  
+  svgResult.innerHTML = `<svg width="100%" height="100%">
+        <rect width="100%" height="100%" style="fill: white;" />
+        ${'<svg xmlns="http://www.w3.org/2000/svg"  x="25%" y="35%" width="50%" height="50%"  viewBox="' + bbox + '">' +
+    '<path d="' + path + '" /></svg>'}
+</body>`;
   svgResult.download = text.value + '.svg';
   // revoke previous URL
   if (svgResult.href) URL.revokeObjectURL(svgResult.href);
-  svgResult.href = URL.createObjectURL(new Blob([svgResult.innerHTML.replace(' height="128"', '')], { type: 'text/plain' }));
+  svgResult.href = URL.createObjectURL(new Blob([svgResult.innerHTML], { type: 'text/plain' }));
 
   shapeResult.innerText = JSON.stringify(result);
 }
@@ -90,7 +95,7 @@ fetch("hb.wasm").then(function (x) {
   return WebAssembly.instantiate(wasm);
 }).then(function (result) {
   window.hb = hbjs(result.instance);
-  fetch('Roboto.abc.ttf').then(function (res) {
+  fetch('Vazirmatn-RD-Black.ttf').then(function (res) {
     return res.arrayBuffer();
   }).then(function (blob) { // can be used without our wrapper
     window.fontBlob = new Uint8Array(blob);
